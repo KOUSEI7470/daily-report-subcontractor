@@ -1,0 +1,209 @@
+* {
+  box-sizing: border-box;
+}
+
+:root {
+  --bg1: #1f6b2d;
+  --bg2: #2f8f3f;
+  --bg3: #8fd19a;
+
+  --card: rgba(255, 255, 255, 0.14);
+  --card-border: rgba(255, 255, 255, 0.18);
+
+  --input-bg: #eefaf0;
+  --input-border: #b8dcbf;
+
+  --text: #12351a;
+  --text-light: #f4fff5;
+
+  --shadow: 0 10px 24px rgba(0, 0, 0, 0.14);
+
+  --btn-off-bg1: #d9e2e8;
+  --btn-off-bg2: #c9d3da;
+  --btn-off-text: #3f4d58;
+
+  --btn-on-bg1: #28a745;
+  --btn-on-bg2: #1e7e34;
+  --btn-on-text: #ffffff;
+}
+
+body {
+  margin: 0;
+  font-family: "Yu Gothic UI", "Yu Gothic", "Meiryo", sans-serif;
+  background: linear-gradient(160deg, var(--bg1), var(--bg2), var(--bg3));
+  min-height: 100vh;
+  color: var(--text-light);
+}
+
+.app {
+  padding: 8px;
+}
+
+.container {
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+.app-header {
+  text-align: center;
+  margin-bottom: 8px;
+}
+
+.app-header h1 {
+  margin: 0;
+  font-size: 1.35rem;
+}
+
+.app-header p {
+  margin: 2px 0 0;
+  font-size: 0.8rem;
+}
+
+.card {
+  background: var(--card);
+  border: 1px solid var(--card-border);
+  border-radius: 14px;
+  backdrop-filter: blur(8px);
+  box-shadow: var(--shadow);
+  padding: 10px;
+  margin-bottom: 8px;
+}
+
+.section-title {
+  font-size: 0.95rem;
+  margin: 0 0 8px;
+}
+
+.form-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+label {
+  font-size: 0.76rem;
+  margin-bottom: 3px;
+  font-weight: 700;
+}
+
+input,
+textarea {
+  width: 100%;
+  min-width: 0;
+  padding: 7px 8px;
+  font-size: 13px;
+  border-radius: 8px;
+  border: 1px solid var(--input-border);
+  background: var(--input-bg);
+  color: var(--text);
+}
+
+textarea {
+  min-height: 72px;
+  resize: vertical;
+}
+
+#siteName {
+  font-size: 14px;
+}
+
+#destinationCompany,
+#meetingPlace {
+  width: 85%;
+  max-width: 320px;
+  min-width: 180px;
+}
+
+.date-row {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2px;
+}
+
+#workDate {
+  width: 150px;
+  max-width: 100%;
+  font-size: 12px;
+  padding: 5px 6px;
+}
+
+.date-inline {
+  font-size: 0.78rem;
+  font-weight: 700;
+  line-height: 1.2;
+  white-space: nowrap;
+}
+
+.narrow-group input {
+  width: 33.3333%;
+  min-width: 120px;
+  max-width: 220px;
+}
+
+.action-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 6px;
+}
+
+.main-button {
+  padding: 10px;
+  border-radius: 10px;
+  border: none;
+  font-size: 0.85rem;
+  font-weight: 700;
+  background: #2f8f3f;
+  color: #ffffff;
+}
+
+.secondary-button {
+  background: #6e8b73;
+}
+
+.excel-button {
+  background: #1f6b2d;
+}
+
+.main-button:disabled {
+  opacity: 0.7;
+}
+
+.summary-area {
+  background: #eefaf0;
+  color: var(--text);
+  padding: 12px;
+  border-radius: 12px;
+  font-size: 0.85rem;
+  min-height: 80px;
+  white-space: normal;
+  line-height: 1.5;
+}
+
+.required {
+  color: red !important;
+  font-weight: bold;
+}
+
+@media (max-width: 600px) {
+  .action-row {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+
+  .main-button {
+    width: 100%;
+    font-size: 0.75rem;
+    padding: 8px;
+  }
+
+  .narrow-group input {
+    width: 33.3333%;
+    min-width: 110px;
+  }
+}

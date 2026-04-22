@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>作業日報入力</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="app">
+
+<header class="app-header">
+  <h1>作業日報 TEST-20260422</h1>
+  <p>スマホ入力用</p>
+</header>
+
+<main class="container">
+
+<section class="card">
+  <h2 class="section-title">基本情報</h2>
+
+  <div class="form-stack">
+
+    <div class="form-group">
+      <label>日付 <span class="required">*</span></label>
+      <div class="date-row">
+        <input type="date" id="workDate">
+        <div id="datePreview" class="date-inline"></div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label>行先会社名 <span class="required">*</span></label>
+      <input type="text" id="destinationCompany">
+    </div>
+
+    <div class="form-group">
+      <label>現場名 <span class="required">*</span></label>
+      <input type="text" id="siteName">
+    </div>
+
+    <div class="form-group">
+      <label>集合場所</label>
+      <input type="text" id="meetingPlace">
+    </div>
+
+    <div class="form-group narrow-group">
+      <label>元請会社名</label>
+      <input type="text" id="primeCompany">
+    </div>
+
+    <div class="form-group narrow-group">
+      <label>所属会社名</label>
+      <input type="text" id="affiliationCompany">
+    </div>
+
+    <div class="form-group narrow-group">
+      <label>始業時間 <span class="required">*</span></label>
+      <input type="time" id="startTime" step="300" inputmode="numeric" pattern="[0-9]{2}:[0-9]{2}">
+    </div>
+
+    <div class="form-group narrow-group">
+      <label>終業時間 <span class="required">*</span></label>
+      <input type="time" id="endTime" step="300" inputmode="numeric" pattern="[0-9]{2}:[0-9]{2}">
+    </div>
+
+    <div class="form-group">
+      <label for="workContent">作業内容</label>
+      <textarea id="workContent" rows="3" placeholder="作業内容を入力してください"></textarea>
+    </div>
+
+    <div class="form-group">
+      <label>その他</label>
+      <textarea id="otherNote"></textarea>
+    </div>
+
+  </div>
+</section>
+
+<section class="card">
+  <h2 class="section-title">作業員選択</h2>
+
+  <div class="form-stack">
+    <div class="form-group">
+      <label>潜水作業員</label>
+      <textarea id="divingWorkers" rows="3" placeholder="名前を入力してください"></textarea>
+    </div>
+
+    <div class="form-group">
+      <label>陸上作業員</label>
+      <textarea id="landWorkers" rows="3" placeholder="名前を入力してください"></textarea>
+    </div>
+
+    <div class="form-group">
+      <label>待機</label>
+      <textarea id="standbyWorkers" rows="3" placeholder="名前を入力してください"></textarea>
+    </div>
+
+    <div class="form-group">
+      <label>移動</label>
+      <textarea id="moveWorkers" rows="3" placeholder="名前を入力してください"></textarea>
+    </div>
+  </div>
+</section>
+
+<section class="card">
+  <div class="action-row">
+    <button id="clearButton" class="main-button secondary-button" type="button">クリア</button>
+    <button id="summaryButton" class="main-button" type="button">確認</button>
+    <button id="excelButton" class="main-button excel-button" type="button">送信</button>
+  </div>
+</section>
+
+<section class="card">
+  <div id="summaryArea" class="summary-area">ここに表示</div>
+</section>
+
+</main>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<script src="./config.js?v=20260422a"></script>
+<script src="./script.js?v=20260422a"></script>
+
+</body>
+</html>
