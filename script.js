@@ -1,4 +1,4 @@
-document.title = "TEST-20260422";
+document.title = "作業日報（下請け用）";
 
 // ==============================
 // EmailJS 設定（config.js 参照）
