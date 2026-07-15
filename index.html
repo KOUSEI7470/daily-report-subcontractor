@@ -122,6 +122,84 @@
 <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 <script src="./config.js?v=20260422a"></script>
 <script src="./script.js?v=20260422a"></script>
+<!-- 送信完了表示 -->
+<div id="successOverlay" class="success-overlay" aria-hidden="true">
+  <div class="success-message">
+    <div class="success-icon">✓</div>
+    <div class="success-text">送信完了</div>
+  </div>
+</div>
 
+<style>
+.success-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.55);
+  z-index: 9999;
+}
+
+.success-overlay.is-visible {
+  display: flex;
+}
+
+.success-message {
+  width: 85%;
+  max-width: 420px;
+  padding: 40px 20px;
+  background: #ffffff;
+  border-radius: 20px;
+  text-align: center;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+}
+
+.success-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 90px;
+  height: 90px;
+  margin: 0 auto 20px;
+  border-radius: 50%;
+  background: #22a447;
+  color: #ffffff;
+  font-size: 60px;
+  font-weight: bold;
+}
+
+.success-text {
+  color: #168238;
+  font-size: 46px;
+  font-weight: bold;
+  letter-spacing: 0.08em;
+}
+</style>
+
+<script>
+let successTimer = null;
+
+function showSendComplete(displayMilliseconds = 2500) {
+  const overlay = document.getElementById("successOverlay");
+
+  if (!overlay) {
+    return;
+  }
+
+  clearTimeout(successTimer);
+
+  overlay.classList.add("is-visible");
+  overlay.setAttribute("aria-hidden", "false");
+
+  successTimer = setTimeout(() => {
+    overlay.classList.remove("is-visible");
+    overlay.setAttribute("aria-hidden", "true");
+  }, displayMilliseconds);
+}
+</script>
 </body>
 </html>
