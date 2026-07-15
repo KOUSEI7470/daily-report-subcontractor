@@ -213,13 +213,25 @@ async function sendReport() {
       }
     );
 
-    els.summaryArea.innerHTML =
-      buildSummaryHTML(data) +
-      "<br><br><strong>送信完了しました。</strong>";
+    // 送信内容を確認欄に表示
+    els.summaryArea.innerHTML = buildSummaryHTML(data);
+
+    // 画面中央に大きく「送信完了」を表示
+    if (typeof window.showSendComplete === "function") {
+      window.showSendComplete(2500);
+    } else {
+      alert("送信完了");
+    }
+
+    // 送信完了表示が消えた後、入力内容をクリア
+    setTimeout(() => {
+      clearAll();
+    }, 2800);
 
   } catch (error) {
     console.error("送信エラー:", error);
     alert("送信に失敗しました。");
+
   } finally {
     els.excelButton.disabled = false;
     els.excelButton.textContent = originalText;
