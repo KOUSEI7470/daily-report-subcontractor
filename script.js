@@ -103,29 +103,47 @@ function getFormData() {
 }
 
 // ==============================
-// 整理表示
+// 整理表示（入力文字列のXSS対策）
 // ==============================
+function escapeHTML(value) {
+  return String(value).replace(/[&<>"']/g, (char) => {
+    const entities = {
+      "&": "&amp;",
+      "<": "&lt;",
+      ">": "&gt;",
+      '"': "&quot;",
+      "'": "&#39;"
+    };
+    return entities[char];
+  });
+}
+
+// 入力欄内の改行を維持しつつ、HTMLとして解釈させない
+function safeDisplay(value) {
+  return escapeHTML(value || "未入力").replace(/\r\n|\r|\n/g, "<br>");
+}
+
 function buildSummaryHTML(data) {
   return `
     <div><strong>【基本情報】</strong></div>
-    <div>日付：${data.workDateText}</div>
-    <div>行先会社名：${data.destinationCompany || "未入力"}</div>
-    <div>現場名：${data.siteName || "未入力"}</div>
-    <div>集合場所：${data.meetingPlace || "未入力"}</div>
-    <div>元請会社名：${data.primeCompany || "未入力"}</div>
-    <div>所属会社名：${data.affiliationCompany || "未入力"}</div>
-    <div>始業時間：${data.startTime || "未入力"}</div>
-    <div>終業時間：${data.endTime || "未入力"}</div>
-    <div>作業内容：${data.workContent || "未入力"}</div>
+    <div>日付：${safeDisplay(data.workDateText)}</div>
+    <div>行先会社名：${safeDisplay(data.destinationCompany)}</div>
+    <div>現場名：${safeDisplay(data.siteName)}</div>
+    <div>集合場所：${safeDisplay(data.meetingPlace)}</div>
+    <div>元請会社名：${safeDisplay(data.primeCompany)}</div>
+    <div>所属会社名：${safeDisplay(data.affiliationCompany)}</div>
+    <div>始業時間：${safeDisplay(data.startTime)}</div>
+    <div>終業時間：${safeDisplay(data.endTime)}</div>
+    <div>作業内容：${safeDisplay(data.workContent)}</div>
     <br>
     <div><strong>【作業員】</strong></div>
-    <div>潜水作業員：${data.divingWorkers || "未入力"}</div>
-    <div>陸上作業員：${data.landWorkers || "未入力"}</div>
-    <div>待機：${data.standbyWorkers || "未入力"}</div>
-    <div>移動：${data.moveWorkers || "未入力"}</div>
+    <div>潜水作業員：${safeDisplay(data.divingWorkers)}</div>
+    <div>陸上作業員：${safeDisplay(data.landWorkers)}</div>
+    <div>待機：${safeDisplay(data.standbyWorkers)}</div>
+    <div>移動：${safeDisplay(data.moveWorkers)}</div>
     <br>
     <div><strong>【その他】</strong></div>
-    <div>${data.otherNote || "未入力"}</div>
+    <div>${safeDisplay(data.otherNote)}</div>
   `;
 }
 
